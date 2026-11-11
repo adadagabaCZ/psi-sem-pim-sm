@@ -34,7 +34,7 @@ with (open("bee.txt", "r")) as file:
             message = file.readline().strip() #read another line
             if (len(message) == 0):
                 file.seek(0) #reset to start so we can keep looping indefinitely
-            time.sleep( 5 )
+            time.sleep( 2 )
         
     finally:
         print("closing socket")
