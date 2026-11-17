@@ -11,6 +11,8 @@ Síť obsahuje celkem 7 routerů,
 -   R1, R4, R6 a R7 typu Mikrotik CHR 7.22.1 (s operačním systémem Mikrotik ROS 7.25.1)
 -   R2, R3 a R5 typu Cisco 7200 150-1.M
 Routery R2, R3, R4 a R6 slouží čistě k směrování v topologii, routery R5 a R7 obsluhují koncové stanice. Router R1 se stará o připojení modelované topologie k internetu, obsluhuje koncovou stanici a mapuje porty pro nástroj MikroTik WinBox - nástroj pro správu a konfiguraci routerů s grafickým uživatelským rozhraním. Jednotlivé konfigurace lze nalézt ve složce "router-config". Konfigurace byly získány příkazy /export compact, resp. show running-config brief. Skripty s příponou .rsc lze přímo použít k dávkové konfiguraci nového routeru. Tyto skripty odpovídají variantě PIM-BSR, resp PIM-SSM (konfiguračně shodné).
+
+Routery od Cisca nemají implementované přihlašování pro správu, routery od firmy MikroTik používají uživatelské jméno "admin" a prázdné heslo (stačí formulář/dotaz potvrdit klávesou ENTER).
 ### Adresace
 V síti jsou použita následující adresační pravidla:
 -    "Domácí" sítě jsou typu "192.168.x.0/24", kde x je unikátní pro každou domácí síť (Unikátnost je potřeba vzhledem k implicitní nekompatibilitě multicastoveho routování s technikou NAT)

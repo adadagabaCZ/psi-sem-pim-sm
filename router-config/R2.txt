@@ -1,0 +1,125 @@
+!
+upgrade fpd auto
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2-Cisco
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+!
+!
+!
+ip source-route
+no ip icmp rate-limit unreachable
+ip cef
+!
+!         
+!         
+!         
+no ip domain lookup
+ip multicast-routing 
+no ipv6 cef
+!         
+multilink bundle-name authenticated
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+redundancy
+!         
+!         
+ip tcp synwait-time 5
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+interface Ethernet0/0
+ no ip address
+ shutdown 
+ duplex auto
+ !        
+!         
+interface GigabitEthernet0/0
+ ip address 10.0.0.2 255.255.255.252
+ ip pim sparse-mode
+ duplex full
+ speed 1000
+ media-type gbic
+ negotiation auto
+ !        
+!         
+interface GigabitEthernet1/0
+ ip address 10.0.0.13 255.255.255.252
+ ip pim sparse-mode
+ negotiation auto
+ !        
+!         
+interface GigabitEthernet2/0
+ ip address 10.0.0.21 255.255.255.252
+ ip pim sparse-mode
+ negotiation auto
+ !        
+!         
+router ospf 1
+ router-id 10.0.0.2
+ log-adjacency-changes
+ network 10.0.0.0 0.0.0.3 area 0.0.0.0
+ network 10.0.0.12 0.0.0.3 area 0.0.0.0
+ network 10.0.0.20 0.0.0.3 area 0.0.0.0
+!         
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!         
+!         
+ip pim rp-address 192.168.255.1
+!         
+no cdp log mismatch duplex
+!         
+!         
+!         
+!         
+!         
+!         
+control-plane
+ !        
+!         
+!         
+mgcp fax t38 ecm
+mgcp behavior g729-variants static-pt
+!         
+!         
+!         
+gatekeeper
+ shutdown 
+!         
+!         
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login    
+!         
+end       
